@@ -1,5 +1,7 @@
 package net.hycrafthd.minecraft_authenticator.util;
 
+import com.google.common.io.ByteStreams;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
@@ -35,7 +37,7 @@ public class HttpResponse {
 		if (inputStream == null) {
 			bytes = new byte[0];
 		} else {
-			bytes = inputStream.readAllBytes();
+			bytes = ByteStreams.toByteArray(inputStream);
 		}
 		return new HttpResponse(responseCode, bytes);
 	}

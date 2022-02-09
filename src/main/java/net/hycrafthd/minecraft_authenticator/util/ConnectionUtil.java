@@ -3,6 +3,7 @@ package net.hycrafthd.minecraft_authenticator.util;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -151,15 +152,34 @@ public class ConnectionUtil {
 	}
 	
 	private static String escape(Object object, boolean percent20) {
-		final String encoded = URLEncoder.encode(object.toString(), StandardCharsets.UTF_8);
-		if (percent20) {
-			return encoded.replace("+", "%20");
-		} else {
-			return encoded;
+		try {
+			final String encoded = URLEncoder.encode(object.toString(), StandardCharsets.UTF_8.toString());
+			if (percent20) {
+				return encoded.replace("+", "%20");
+			} else {
+				return encoded;
+			}
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public static class TimeoutValues {
+		private int connectTimeout;
+		private int readTimeout;
+
+        public TimeoutValues(int connectTimeout, int readTimeout) {
+			this.connectTimeout = connectTimeout;
+			this.readTimeout = readTimeout;
+		}
+
+		public int connectTimeout() {
+			return this.connectTimeout;
+		}
+
+		public int readTimeout() {
+			return this.readTimeout;
 		}
 	}
-	
-	public static record TimeoutValues(int connectTimeout, int readTimeout) {
-	}
-	
 }

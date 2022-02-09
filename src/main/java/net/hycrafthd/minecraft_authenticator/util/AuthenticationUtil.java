@@ -7,6 +7,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Map.Entry;
 import java.util.Optional;
 
+import com.google.common.io.ByteStreams;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 
@@ -40,7 +41,7 @@ public class AuthenticationUtil {
 	
 	public static AuthenticationFile readAuthenticationFile(InputStream inputStream) throws IOException {
 		try {
-			final String json = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
+			final String json = new String(ByteStreams.toByteArray(inputStream), StandardCharsets.UTF_8);
 			return Constants.GSON.fromJson(json, AuthenticationFile.class);
 		} catch (JsonParseException ex) {
 			throw new IOException("Cannot parse authentication file", ex);

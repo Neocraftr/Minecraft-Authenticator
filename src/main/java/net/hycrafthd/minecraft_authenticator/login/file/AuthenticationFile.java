@@ -20,7 +20,7 @@ import net.hycrafthd.minecraft_authenticator.util.AuthenticationUtil;
  * {@link MicrosoftAuthenticationFile} instance.
  */
 @JsonAdapter(AuthenticationFileDeserializer.class)
-public sealed abstract class AuthenticationFile permits YggdrasilAuthenticationFile,MicrosoftAuthenticationFile {
+public abstract class AuthenticationFile {
 	
 	/**
 	 * Reads an {@link AuthenticationFile} from an input stream.

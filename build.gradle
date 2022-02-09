@@ -1,7 +1,7 @@
 buildscript {
 	
 	ext.buildProps = file "build.properties"
-	
+
 	buildProps.withReader {
 		def prop = new Properties()
 		prop.load(it)
@@ -31,6 +31,7 @@ repositories {
 }
 
 dependencies {
+	implementation group: "com.google.guava", name: "guava", version: config.guava.version
 	implementation group: "com.google.code.gson", name: "gson", version: config.gson.version
 }
 
@@ -49,7 +50,7 @@ sourceSets {
 
 java {
 	toolchain {
-		languageVersion = JavaLanguageVersion.of(17)
+		languageVersion = JavaLanguageVersion.of(8)
 	}
 	withSourcesJar()
 	withJavadocJar()
