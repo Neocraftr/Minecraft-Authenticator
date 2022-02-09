@@ -35,7 +35,7 @@ dependencies {
 	implementation group: "com.google.code.gson", name: "gson", version: config.gson.version
 }
 
-group = "net.hycrafthd"
+group = "de.neocraftr"
 archivesBaseName = "minecraft_authenticator"
 version = "2.0.1"
 
